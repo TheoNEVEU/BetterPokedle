@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterPokedle</title>
+</head>
+
+<body>
+    <img src="background.png" id="background">
+    <div class="grid-container">
+        <div class="menu-column">
+            <div id="menu-content">
+            <h1>Better Pokédle</h1><br>
+            <fieldset>
+                <button id="solution">Afficher solution</button>
+                <button id="restart">Nouvelle partie</button>
+
+            </fieldset>
+            </div>
+            <img src="pokedex.jpg">
+        </div>
+
+        <div class="game-column">
+            <fieldset>
+                <input type="text" placeholder="  Chercher un pokémon" id="SearchBar">
+            </fieldset>
+            <div id="SearchResults"></div>
+
+            <div id="trylisttitles">
+                <div class="first-row">
+                    <div class="first-square">Sprite</div>
+                    <div class="first-square">Type n°1</div>
+                    <div class="first-square">Type n°2</div>
+                    <div class="first-square">Génération</div>
+                    <div class="first-square">Stade d'évolution</div>
+                    <div class="first-square">Couleur</div>
+                    <div class="first-square"></div>
+                    <div class="first-square"></div>
+                </div>
+            </div>
+            <div id="trylist">
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+
+</html>

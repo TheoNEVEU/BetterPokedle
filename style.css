@@ -1,0 +1,242 @@
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grid-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: min(30%, calc(100vh * 0.7295645531)) calc(100vw - min(30%, calc(100vh * 0.7295645531)));
+}
+
+.menu-column {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.menu-column>img {
+  position: absolute;
+  left: min(0px, 31%);
+  z-index: 2;
+  height: 100%;
+}
+
+#menu-content{
+  border: 3px dotted green;
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+
+  top: 30%;
+  left: 8.5vh;
+  z-index: 10;
+  
+  height: 32vh;
+  aspect-ratio: 1.5 / 1;
+  font-size: 2.5vh;
+}
+
+#menu-content > h1 {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 0%;
+  margin-bottom: 0%;
+}
+
+#menu-content > fieldset {
+  margin: 0%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu-content > fieldset > button {
+  width: 80%;
+  height: 40%;
+  border: 3px solid yellow;
+  border-radius: 10px;
+  box-shadow: 2px 2px blue;
+  background-color: tan;
+  font-size: 2.5vh;
+}
+
+.game-column {
+  padding: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#background {
+  position: absolute;
+  object-fit:cover;
+  z-index: 1;
+
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+fieldset {
+  display: flex;
+  justify-content: center;
+  border: none;
+  z-index: 10;
+  margin-top: 20px;
+}
+
+#SearchBar {
+  border: 3px solid yellow;
+  box-shadow: 2px 2px blue;
+  background-color: tan;
+  border-radius: 40px;
+  width: 30%;
+  height: 40px;
+  z-index: 10;
+}
+
+#SearchResults {
+  position:absolute;
+  top: 100px;  /* Ajuste la position sous la barre de recherche */
+  left: 30%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  max-height: 0;  /* Début à 0 pour shrink */
+  overflow: scroll;
+  opacity: 1;  /* Commence invisible */
+  width: 20%;
+  margin-left: 35%;
+  border-radius: 10px;
+  box-shadow: 3px 3px grey;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.shrink {
+  max-height: 0 !important;
+  opacity: 0;
+}
+
+.expand {
+  max-height: 200px !important; /* Valeur plus grande que le contenu réel */
+  opacity: 1;
+}
+
+.result {
+  height: 30px;
+  width: 100%;
+  border: none;
+  z-index: 10;
+}
+
+.first-row {
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: center;  
+  gap: 15px;
+  padding: 10px 0;
+  border: 1px solid transparent;
+  margin-bottom: 5px;
+  z-index: 10;
+}
+
+.row {
+  width: 90%;
+  display: flex;
+  justify-content: center;  
+  gap: 15px;
+  padding: 10px 0;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 1px 1px black;
+  margin-bottom: 5px;
+  z-index: 10;
+  }
+
+.square {
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 5vw;
+  aspect-ratio: 0.7161290323;
+  justify-content:center;
+  align-content: center;
+  z-index: 10;
+  perspective: 1000px;
+}
+
+.square-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 3px solid black;
+  border-radius: 5px;
+  box-shadow: 1px 1px black;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+.square-front, .square-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border-radius: 2px;
+  box-shadow: 1px 1px black;
+}
+
+.square-front {
+  background-color: white;
+}
+
+.square-back {
+  background-color: tan;
+  transform: rotateY(180deg);
+}
+
+.first-square {
+  text-align: center;
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 5vw;
+  height: 3vw;
+  justify-content:center;
+  align-content: center;
+  border: 3px solid transparent;
+  border-bottom: 5px solid black;
+  z-index: 10;
+}
+
+#pokemonSprite {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
