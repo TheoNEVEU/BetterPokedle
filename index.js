@@ -79,7 +79,7 @@ const pokemonsList = [
 ];
 
 var pokemonTarget = Math.floor(Math.random() * (pokemonsList.length)) + 1;;
-
+var isSearchBarLocked = false;
 
 function ajouterLigne(pokemonTarget, pokemonGuess) {
     const trylist = document.getElementById("trylist");
@@ -207,7 +207,7 @@ function expandDiv(element) {
 }
 
 document.getElementById("SearchBar").addEventListener('focusin', () => {
-    expandDiv(document.getElementById("SearchResults"));
+    if(!isSearchBarLocked) expandDiv(document.getElementById("SearchResults"));
 });
 
 document.getElementById("SearchBar").addEventListener('focusout', () => {
@@ -215,6 +215,23 @@ document.getElementById("SearchBar").addEventListener('focusout', () => {
         shrinkDiv(document.getElementById("SearchResults"));
     }, 50); // Petit délai pour que l'effet soit pris en compte
 });
+
+document.getElementById("solution").onclick = () => {
+    ajouterLigne(pokemonTarget, pokemonTarget);
+    console.log("Show Solution");
+    isSearchBarLocked = true;
+}
+
+document.getElementById("restart").onclick = () => {
+    resultList = document.getElementById("SearchResults");
+    while(resultList.firstChild){
+        resultList.removeChild(resultList.firstChild);
+    };
+    console.log("Start New Game");
+    pokemonTarget = Math.floor(Math.random() * (pokemonsList.length - 1 + 1)) + 1;
+    pokemonsList.forEach(element.checked=false);
+    isSearchBarLocked = false;
+}
 
 window.addEventListener("load", (event) => {
     pokemonTarget = Math.floor(Math.random() * (pokemonsList.length - 1 + 1)) + 1;
