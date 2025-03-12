@@ -155,6 +155,8 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
     trylist.insertBefore(newRow, trylist.firstChild);
     pokemonsList[pokemonGuess].checked = true;
+    document.getElementById("SearchBar").focus();
+    expandDiv(document.getElementById("SearchResults"));
 }
 
 
@@ -207,7 +209,8 @@ function expandDiv(element) {
 }
 
 document.getElementById("SearchBar").addEventListener('focusin', () => {
-    if(!isSearchBarLocked) expandDiv(document.getElementById("SearchResults"));
+    if(isSearchBarLocked) document.getElementById("SearchBar").blur();
+    else expandDiv(document.getElementById("SearchResults"));
 });
 
 document.getElementById("SearchBar").addEventListener('focusout', () => {
@@ -219,13 +222,14 @@ document.getElementById("SearchBar").addEventListener('focusout', () => {
 document.getElementById("solution").onclick = () => {
     ajouterLigne(pokemonTarget, pokemonTarget);
     console.log("Show Solution");
+    document.getElementById("SearchBar").
     isSearchBarLocked = true;
 }
 
 document.getElementById("restart").onclick = () => {
-    resultList = document.getElementById("SearchResults");
-    while(resultList.firstChild){
-        resultList.removeChild(resultList.firstChild);
+    trylist = document.getElementById("trylist");
+    while(trylist.firstChild){
+        trylist.removeChild(trylist.firstChild);
     };
     console.log("Start New Game");
     pokemonTarget = Math.floor(Math.random() * (pokemonsList.length - 1 + 1)) + 1;
