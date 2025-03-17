@@ -131,7 +131,8 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             imgTry.src = 'https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/' + pokemon.nomAnglais + '.avif';
             imgTry.alt = pokemon.nom;
             back.appendChild(imgTry);
-        } else {
+        } 
+        else {
             back.textContent = infos[i - 1]; 
             if (infos[i - 1] == targetinfos[i - 1]) {
                 back.style.backgroundColor = "green";
@@ -150,13 +151,13 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
         setTimeout(() => {
             squareInner.style.transform = "rotateY(180deg)";
-        }, i * 300); // Ajoute un délai pour chaque case
+        }, 50 + i * 300); // Ajoute un délai pour chaque case
     }
 
     trylist.insertBefore(newRow, trylist.firstChild);
     pokemonsList[pokemonGuess].checked = true;
     document.getElementById("SearchBar").focus();
-    expandDiv(document.getElementById("SearchResults"));
+    //expandDiv(document.getElementById("SearchResults"));
 }
 
 
@@ -190,11 +191,9 @@ document.getElementById("SearchBar").addEventListener('keyup', function(e) {
 
 function shrinkDiv(element) {
     element.classList.remove('expand');
-
     setTimeout(() => {
     element.classList.add('shrink'); 
     }, 10);
-
     setTimeout(() => {
         element.style.display = 'none';
     }, 500);
