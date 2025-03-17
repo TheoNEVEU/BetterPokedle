@@ -179,11 +179,12 @@ fieldset {
   display: flex;
   flex-wrap: wrap;
   width: 5vw;
-  aspect-ratio: 0.7161290323;
+  height: calc(5vw / 0.7161290323);
   justify-content:center;
   align-content: center;
   z-index: 10;
   perspective: 1000px;
+  border: 3px solid transparent;
 }
 
 .square-inner {
@@ -230,6 +231,7 @@ fieldset {
   align-content: center;
   border: 3px solid transparent;
   border-bottom: 5px solid black;
+  border-radius: 1px;
   z-index: 10;
 }
 
