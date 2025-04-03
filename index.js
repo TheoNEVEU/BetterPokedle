@@ -1,4 +1,13 @@
-var pokemonsList = [];
+var pokemonsListFile = "https://theoneveu.github.io/CirmonTCG/pokemonList.json";
+var request = new XMLHttpRequest();
+request.open("GET", pokemonsListFile);
+request.responseType = "json";
+request.send();
+
+request.onload = function () {
+    var pokemonsList = request.response;
+    console.log(pokemonsList);
+};
 
 var pokemonTarget = Math.floor(Math.random() * (pokemonsList.length)) + 1;;
 var isSearchBarLocked = false;
