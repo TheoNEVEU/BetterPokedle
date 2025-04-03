@@ -2,6 +2,9 @@
 <html lang="fr">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +28,7 @@
 
         <div class="game-column">
             <fieldset>
-                <input type="text" placeholder="  Chercher un pokémon" id="SearchBar">
+                <input type="text" placeholder="  Chercher un pokémon" id="SearchBar" autocomplete="off">
             </fieldset>
             <div id="SearchResults"></div>
 
@@ -34,11 +37,11 @@
                     <div class="first-square">Sprite</div>
                     <div class="first-square">Type n°1</div>
                     <div class="first-square">Type n°2</div>
-                    <div class="first-square">Génération</div>
                     <div class="first-square">Stade d'évolution</div>
                     <div class="first-square">Couleur</div>
-                    <div class="first-square"></div>
-                    <div class="first-square"></div>
+                    <div class="first-square">Taille</div>
+                    <div class="first-square">Poids</div>
+                    <div class="first-square">Génération</div>
                 </div>
             </div>
             <div id="trylist">

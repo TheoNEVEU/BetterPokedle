@@ -6,6 +6,7 @@ html {
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -33,7 +34,6 @@ body {
 }
 
 #menu-content{
-  border: 3px dotted green;
   display: flex;
   position: absolute;
   flex-wrap: wrap;
@@ -53,10 +53,13 @@ body {
   width: 100%;
   padding: 0%;
   margin-bottom: 0%;
+  padding-bottom: 0px;
 }
 
 #menu-content > fieldset {
   margin: 0%;
+  padding: 0px;
+  padding-bottom: 5%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -176,11 +179,12 @@ fieldset {
   display: flex;
   flex-wrap: wrap;
   width: 5vw;
-  aspect-ratio: 0.7161290323;
+  height: calc(5vw / 0.7161290323);
   justify-content:center;
   align-content: center;
   z-index: 10;
   perspective: 1000px;
+  border: 3px solid transparent;
 }
 
 .square-inner {
@@ -227,6 +231,7 @@ fieldset {
   align-content: center;
   border: 3px solid transparent;
   border-bottom: 5px solid black;
+  border-radius: 1px;
   z-index: 10;
 }
 
