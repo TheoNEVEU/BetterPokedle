@@ -1,0 +1,14 @@
+[
+    { "id": 1, "nom": "Bulbizarre", "types": ["Plante", "Poison"], "generation": 1, "evolution": 1, "couleur": "Vert", "nomAnglais": "bulbasaur", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 2, "nom": "Herbizarre", "types": ["Plante", "Poison"], "generation": 1, "evolution": 2, "couleur": "Vert", "nomAnglais": "ivysaur", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 3, "nom": "Florizarre", "types": ["Plante", "Poison"], "generation": 1, "evolution": 3, "couleur": "Vert", "nomAnglais": "venusaur", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 4, "nom": "Salamèche", "types": ["Feu", "Aucun"], "generation": 1, "evolution": 1, "couleur": "Rouge", "nomAnglais": "charmander", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 5, "nom": "Reptincel", "types": ["Feu", "Aucun"], "generation": 1, "evolution": 2, "couleur": "Rouge", "nomAnglais": "charmeleon", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 6, "nom": "Dracaufeu", "types": ["Feu", "Vol"], "generation": 1, "evolution": 3, "couleur": "Orange", "nomAnglais": "charizard", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 7, "nom": "Carapuce", "types": ["Eau", "Aucun"], "generation": 1, "evolution": 1, "couleur": "Bleu", "nomAnglais": "squirtle", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 8, "nom": "Carabaffe", "types": ["Eau", "Aucun"], "generation": 1, "evolution": 2, "couleur": "Bleu", "nomAnglais": "wartortle", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 9, "nom": "Tortank", "types": ["Eau", "Aucun"], "generation": 1, "evolution": 3, "couleur": "Bleu", "nomAnglais": "blastoise", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 10, "nom": "Chenipan", "types": ["Insecte", "Aucun"], "generation": 1, "evolution": 1, "couleur": "Vert", "nomAnglais": "caterpie", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 11, "nom": "Chrysacier", "types": ["Insecte", "Aucun"], "generation": 1, "evolution": 2, "couleur": "Vert", "nomAnglais": "metapod", "checked": false, "taille": 0, "poids": 0 },
+    { "id": 12, "nom": "Papilusion", "types": ["Insecte", "Vol"], "generation": 1, "evolution": 3, "couleur": "Violet", "nomAnglais": "butterfree", "checked": false, "taille": 0, "poids": 0 }
+]
