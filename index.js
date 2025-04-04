@@ -10,9 +10,6 @@ var isSearchBarLocked = false;
 
 request.onload = function () {
     pokemonsList = request.response;
-    console.log(pokemonsList);
-    
-    // Lance le jeu une fois les données chargées
     initialiserJeu();
 };
 
