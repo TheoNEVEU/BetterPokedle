@@ -141,7 +141,7 @@ function ajouterResultat(pokemonNameSearch) {
                 console.log("Guessed " + element.nom);
             }
 
-            newResult.textContent = element.nom;
+            newResult.textContent = element.id+". "+element.nom;
             resultList.appendChild(newResult); 
         }
     });
