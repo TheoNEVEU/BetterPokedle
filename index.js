@@ -129,7 +129,9 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
     trylist.insertBefore(newRow, trylist.firstChild);
     pokemonsList[pokemonGuess].checked = true;
-    document.getElementById("SearchBar").focus();
+    ajouterResultat(document.getElementById("SearchBar").value.toLowerCase());
+    if(pokemonTarget != pokemonGuess) setTimeout(() => {document.getElementById("SearchBar").focus();}, 2800);
+    
 }
 
 function ajouterResultat(pokemonNameSearch) {
