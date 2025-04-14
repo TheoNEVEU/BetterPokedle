@@ -66,7 +66,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
     const infos = [
         pokemon.types[0], 
-        pokemon.types[1] || "", 
+        pokemon.types[1] || "Aucun", 
         pokemon.evolution, 
         pokemon.couleur, 
         pokemon.taille, 
@@ -105,6 +105,13 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
         } else {
             back.textContent = infos[i - 1]; 
             back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
+            if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){
+                const arrow = document.createElement("img");
+                arrow.src = "arrow.png";
+                arrow.classList.add("arrow");
+                arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
+                back.appendChild(arrow);
+            }
         }
 
         front.style.backgroundImage = "url('carte.png')";
@@ -141,7 +148,7 @@ function ajouterResultat(pokemonNameSearch) {
                 console.log("Guessed " + element.nom);
             }
 
-            newResult.textContent = toString(element.id)+". "+element.nom;
+            newResult.textContent = ""+element.id+". "+element.nom;
             resultList.appendChild(newResult); 
         }
     });
