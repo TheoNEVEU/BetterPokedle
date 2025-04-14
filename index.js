@@ -76,7 +76,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
     const targetinfos = [
         pokemonsList[pokemonTarget].types[0], 
-        pokemonsList[pokemonTarget].types[1] || "", 
+        pokemonsList[pokemonTarget].types[1] || "Aucun", 
         pokemonsList[pokemonTarget].evolution, 
         pokemonsList[pokemonTarget].couleur, 
         pokemonsList[pokemonTarget].taille, 
