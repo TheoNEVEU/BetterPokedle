@@ -5,6 +5,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +19,8 @@
 <body>
     <img src="background.png" id="background">
     <div class="grid-container">
+
+        <!-- DIV Menu (Partie Gauche de l'écran) -->
         <div class="menu-column">
             <div id="menu-content">
             <h1>Better Pokédle</h1><br>
@@ -23,9 +30,13 @@
 
             </fieldset>
             </div>
+            <div id="menu-score">🏆
+                <div id="score">000</div>
+            </div>
             <img src="pokedex.jpg">
         </div>
 
+        <!-- DIV Jeu (Partie Droite de l'écran) -->
         <div class="game-column">
             <fieldset>
                 <input type="text" placeholder="  Chercher un pokémon" id="SearchBar" autocomplete="off">
@@ -49,7 +60,8 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="./confetti.js"></script>
 </body>
 
 

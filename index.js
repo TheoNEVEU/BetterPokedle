@@ -1,3 +1,5 @@
+import { lancerConfettis } from './confetti.js';
+
 var pokemonsListFile = "https://theoneveu.github.io/CirmonTCG/pokemonList.json";
 var request = new XMLHttpRequest();
 request.open("GET", pokemonsListFile);
@@ -28,8 +30,8 @@ function initialiserJeu() {
 
     document.getElementById("SearchBar").addEventListener('focusout', () => {
         setTimeout(() => {
-            shrinkDiv(document.getElementById("SearchResults"));
-        }, 50);
+            if(document.activeElement != document.getElementById("SearchBar")) shrinkDiv(document.getElementById("SearchResults"));
+        }, 100);
     });
 
     document.getElementById("solution").onclick = () => {
@@ -130,7 +132,14 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
     trylist.insertBefore(newRow, trylist.firstChild);
     pokemonsList[pokemonGuess].checked = true;
     ajouterResultat(document.getElementById("SearchBar").value.toLowerCase());
-    if(pokemonTarget != pokemonGuess) setTimeout(() => {document.getElementById("SearchBar").focus();}, 2800);
+    if(pokemonTarget == pokemonGuess){
+        setTimeout(() => {lancerConfettis();}, 2800);
+        isSearchBarLocked = true;
+    }
+    else {
+        setTimeout(() => {document.getElementById("SearchBar").focus();}, 2800);
+    } 
+
     
 }
 
@@ -142,12 +151,20 @@ function ajouterResultat(pokemonNameSearch) {
     }
 
     pokemonsList.forEach(element => {
-        if (element.nom.toLowerCase().includes(pokemonNameSearch) && !element.checked) {
+        if (element.nom.toLowerCase().includes(pokemonNameSearch)) {
             const newResult = document.createElement("button");
             newResult.classList.add("result");
-            newResult.onclick = () => {
-                ajouterLigne(pokemonTarget, element.id - 1);
-                console.log("Guessed " + element.nom);
+            if(!element.checked){
+                newResult.onclick = () => {
+                    ajouterLigne(pokemonTarget, element.id - 1);
+                    console.log("Guessed " + element.nom);
+                }
+            }
+            else{
+                newResult.style.color = 'grey';
+                newResult.onclick = () => {
+                    document.getElementById("SearchBar").focus();
+                }
             }
 
             newResult.textContent = ""+element.id+". "+element.nom;
