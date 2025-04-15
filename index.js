@@ -9,6 +9,7 @@ request.send();
 var pokemonsList;
 var pokemonTarget;
 var isSearchBarLocked = false;
+var displaySolution = false;
 
 request.onload = function () {
     pokemonsList = request.response;
@@ -38,6 +39,7 @@ function initialiserJeu() {
         ajouterLigne(pokemonTarget, pokemonTarget);
         console.log("Show Solution");
         isSearchBarLocked = true;
+        displaySolution = true;
     }
 
     document.getElementById("restart").onclick = () => {
@@ -49,6 +51,7 @@ function initialiserJeu() {
         pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
         pokemonsList.forEach(element => element.checked = false);
         isSearchBarLocked = false;
+        displaySolution = false;
     }
 }
 
@@ -133,8 +136,14 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
     pokemonsList[pokemonGuess].checked = true;
     ajouterResultat(document.getElementById("SearchBar").value.toLowerCase());
     if(pokemonTarget == pokemonGuess){
-        setTimeout(() => {lancerConfettis();}, 2800);
+        setTimeout(() => {
+            if(!displaySolution) {
+                document.getElementById("score").textContent = parseInt(document.getElementById("score").textContent) + 1;
+                lancerConfettis();
+            }
+        }, 2800);
         isSearchBarLocked = true;
+        
     }
     else {
         setTimeout(() => {document.getElementById("SearchBar").focus();}, 2800);

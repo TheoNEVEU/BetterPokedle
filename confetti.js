@@ -4,5 +4,5 @@ const jsConfetti = new JSConfetti();
 
 export function lancerConfettis() {
     //jsConfetti.addConfetti();
-    jsConfetti.addConfetti({emojis: ['🏆', '⭐'],});
+    jsConfetti.addConfetti({emojis: ['🏆', '⭐', '🏅'],});
 }

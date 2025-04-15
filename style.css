@@ -201,6 +201,8 @@ body {
   flex-wrap: wrap;
   background-color: transparent;
   border: none;
+  overflow-y: scroll;
+  max-height: 60%;
 }
 
 .first-row {
