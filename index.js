@@ -1,6 +1,6 @@
 import { lancerConfettis } from './confetti.js';
 
-var pokemonsListFile = "https://theoneveu.github.io/CirmonTCG/pokemonList.json";
+var pokemonsListFile = "https://theoneveu.github.io/BetterPokedle/pokemonList.json";
 var request = new XMLHttpRequest();
 request.open("GET", pokemonsListFile);
 request.responseType = "json";
