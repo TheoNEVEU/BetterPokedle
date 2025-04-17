@@ -11,12 +11,32 @@ var pokemonTarget;
 var isSearchBarLocked = false;
 var displaySolution = false;
 
+// Liste des IDs de boutons
+const buttonIds = [
+    "but-type1",
+    "but-type2",
+    "but-evo",
+    "but-couleur",
+    "but-taille",
+    "but-poids"
+  ];
+
+var buttonStates = {
+    "but-type1": true,
+    "but-type2": true,
+    "but-evo": true,
+    "but-couleur": true,
+    "but-taille": true,
+    "but-poids": true
+};
+
 request.onload = function () {
     pokemonsList = request.response;
     initialiserJeu();
 };
 
 function initialiserJeu() {
+
     pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
 
     document.getElementById("game-button").classList.add("active");
@@ -100,6 +120,16 @@ function initialiserJeu() {
         setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
         setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
     }
+
+    buttonIds.forEach(id => {
+        document.getElementById(id).classList.add("active");
+        document.getElementById(id).addEventListener("click", () => {
+            buttonStates[id] = !buttonStates[id]; // Toggle le booléen
+            document.getElementById(id).classList.toggle("active"); // Toggle le style
+            console.log(`${id} -> ${buttonStates[id]}`);
+        });
+    });
+
 }
 
 function ajouterLigne(pokemonTarget, pokemonGuess) {
@@ -155,14 +185,21 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             imgTry.alt = pokemon.nom;
             back.appendChild(imgTry);
         } else {
-            back.textContent = infos[i - 1]; 
-            back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
-            if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){
-                const arrow = document.createElement("img");
-                arrow.src = "img/arrow.png";
-                arrow.classList.add("arrow");
-                arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
-                back.appendChild(arrow);
+            if(i==0 || ((i>= 1 && i<=6) && buttonStates[buttonIds[i-1]]) || i==7){
+                back.textContent = infos[i - 1]; 
+                back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
+                if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){
+                    const arrow = document.createElement("img");
+                    arrow.src = "img/arrow.png";
+                    arrow.classList.add("arrow");
+                    arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
+                    back.appendChild(arrow);
+                }
+            }
+            else {
+                back.textContent = "???"; 
+                back.style.backgroundColor = 'black';
+                back.style.color = 'white';
             }
         }
 
@@ -174,9 +211,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
         square.appendChild(squareInner);
         newRow.appendChild(square);
 
-        setTimeout(() => {
-            squareInner.style.transform = "rotateY(180deg)";
-        }, 50 + i * 300);
+        setTimeout(() => {squareInner.style.transform = "rotateY(180deg)";}, 50 + i * 300);
     }
 
     trylist.insertBefore(newRow, trylist.firstChild);
