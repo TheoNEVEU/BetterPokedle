@@ -169,7 +169,7 @@ if (!isInfoVisible(infoKey)) {
     // Flèche si taille ou poids incorrects
     if ((infoKey === "taille" || infoKey === "poids") && infos[i - 1] != targetinfos[i - 1]) {
         const arrow = document.createElement("img");
-        arrow.src = "arrow.png";
+        arrow.src = "img/arrow.png";
         arrow.classList.add("arrow");
         arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
         back.appendChild(arrow);
@@ -179,7 +179,7 @@ if (!isInfoVisible(infoKey)) {
 
             if ((i == 5 || i == 6) && infos[i - 1] != targetinfos[i - 1]) {
                 const arrow = document.createElement("img");
-                arrow.src = "arrow.png";
+                arrow.src = "img/arrow.png";
                 arrow.classList.add("arrow");
                 arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
                 back.appendChild(arrow);
