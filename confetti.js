@@ -9,7 +9,7 @@ export function lancerConfettis() {
 
 export function eazy() {
     //jsConfetti.addConfetti();
-    jsConfetti.addConfetti({emojis: ['😇', '🗿', '👼'],});
+    jsConfetti.addConfetti({emojis: ['😇', '🚸', '👼'],});
 }
 
 export function hard() {

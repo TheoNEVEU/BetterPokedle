@@ -1,4 +1,4 @@
-import { hard, lancerConfettis } from './confetti.js';
+import { hard, lancerConfettis, eazy } from './confetti.js';
 
 var pokemonsListFile = "https://theoneveu.github.io/BetterPokedle/pokemonList.json";
 var request = new XMLHttpRequest();
@@ -163,6 +163,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
         back.classList.add("square-back");
 
         if (i == 0) {
+            // Image du Pokémon
             const imgTry = document.createElement("img");
             imgTry.id = "pokemonSprite";
             imgTry.src = 'https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/' + pokemon.nomAnglais + '.avif';
@@ -170,8 +171,17 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             back.appendChild(imgTry);
         } else {
             back.textContent = infos[i - 1]; 
-            back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
-            if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){
+        
+            if (infos[i - 1] === "?") {
+                // Fond bleu pour les cartes masquées en mode difficile
+                back.style.backgroundColor = "#0074cc";
+            } else {
+                // Fond vert ou rouge en mode normal
+                back.style.backgroundColor = (infos[i - 1] === targetinfos[i - 1]) ? "green" : "#C60C30";
+            }
+        
+            // Ajout des flèches pour taille/poids
+            if ((i == 5 || i == 6) && infos[i - 1] != targetinfos[i - 1] && infos[i - 1] !== "?") {
                 const arrow = document.createElement("img");
                 arrow.src = "arrow.png";
                 arrow.classList.add("arrow");
@@ -179,6 +189,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
                 back.appendChild(arrow);
             }
         }
+        
 
         front.style.backgroundImage = "url('img/carte.png')";
         front.style.backgroundSize = "cover";
