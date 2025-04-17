@@ -30,6 +30,15 @@ var buttonStates = {
     "but-poids": true
 };
 
+var nextButtonStates = {
+    "but-type1": true,
+    "but-type2": true,
+    "but-evo": true,
+    "but-couleur": true,
+    "but-taille": true,
+    "but-poids": true
+};
+
 request.onload = function () {
     pokemonsList = request.response;
     initialiserJeu();
@@ -61,10 +70,10 @@ function initialiserJeu() {
     });
 
     document.getElementById("solution").onclick = () => {
-        ajouterLigne(pokemonTarget, pokemonTarget);
-        console.log("Show Solution");
         isSearchBarLocked = true;
         displaySolution = true;
+        ajouterLigne(pokemonTarget, pokemonTarget);
+        console.log("Show Solution");
     }
 
     document.getElementById("restart").onclick = () => {
@@ -79,54 +88,54 @@ function initialiserJeu() {
         displaySolution = false;
     }
 
-    document.getElementById("game-button").onclick = () => {
-        document.getElementById("game-button").classList.add("active");
-        document.getElementById("settings-button").classList.remove("active");
-        document.getElementById("team-button").classList.remove("active");
-        
-        document.getElementById("menu-game").classList.remove("inactive");
-        document.getElementById("menu-settings").classList.add("inactive");
-        document.getElementById("menu-team").classList.add("inactive");
-
-        document.getElementById("menu-game").style.display = 'flex';
-        setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
-        setTimeout(() => {document.getElementById("menu-team").style.display = 'none';}, 500);
-    }
-
-    document.getElementById("settings-button").onclick = () => {
-        document.getElementById("game-button").classList.remove("active");
-        document.getElementById("settings-button").classList.add("active");
-        document.getElementById("team-button").classList.remove("active");
-
-        document.getElementById("menu-game").classList.add("inactive");
-        document.getElementById("menu-settings").classList.remove("inactive");
-        document.getElementById("menu-team").classList.add("inactive");
-
-        document.getElementById("menu-settings").style.display = 'flex';
-        setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
-        setTimeout(() => {document.getElementById("menu-team").style.display = 'none';}, 500);
-    }
-
-    document.getElementById("team-button").onclick = () => {
-        document.getElementById("game-button").classList.remove("active");
-        document.getElementById("settings-button").classList.remove("active");
-        document.getElementById("team-button").classList.add("active");
-
-        document.getElementById("menu-game").classList.add("inactive");
-        document.getElementById("menu-settings").classList.add("inactive");
-        document.getElementById("menu-team").classList.remove("inactive");
-
-        document.getElementById("menu-team").style.display = 'flex';
-        setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
-        setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
+    document.getElementById("apply-diff").onclick = () => {
+        const trylist = document.getElementById("trylist");
+        while (trylist.firstChild) {
+            trylist.removeChild(trylist.firstChild);
+        }
+        buttonStates = { ...nextButtonStates };
+        console.log("Start New Game with new parameters");
+        pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
+        pokemonsList.forEach(element => element.checked = false);
+        isSearchBarLocked = false;
+        displaySolution = false;
     }
 
     buttonIds.forEach(id => {
         document.getElementById(id).classList.add("active");
         document.getElementById(id).addEventListener("click", () => {
-            buttonStates[id] = !buttonStates[id]; // Toggle le booléen
+            nextButtonStates[id] = !nextButtonStates[id]; // Toggle le booléen
             document.getElementById(id).classList.toggle("active"); // Toggle le style
-            console.log(`${id} -> ${buttonStates[id]}`);
+            console.log(`${id} -> ${nextButtonStates[id]}`);
+        });
+    });
+
+    // Liste des groupes de menus
+    const menuGroups = ["game", "settings", "team"];
+
+    menuGroups.forEach(active => {
+        const button = document.getElementById(`${active}-button`);
+        button.addEventListener("click", () => {
+            // Met à jour les classes actives
+            menuGroups.forEach(name => {
+                document.getElementById(`${name}-button`).classList.toggle("active", name === active);
+            });
+
+            // Met à jour les menus visibles
+            menuGroups.forEach(name => {
+                const menu = document.getElementById(`menu-${name}`);
+                const isActive = name === active;
+
+                menu.classList.toggle("inactive", !isActive);
+                if (isActive) {
+                    menu.style.display = "flex";
+                }
+                else {
+                    setTimeout(() => {
+                        menu.style.display = "none";
+                    }, 750);
+                }
+            });
         });
     });
 
@@ -185,7 +194,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             imgTry.alt = pokemon.nom;
             back.appendChild(imgTry);
         } else {
-            if(i==0 || ((i>= 1 && i<=6) && buttonStates[buttonIds[i-1]]) || i==7){
+            if(((i>= 1 && i<=6) && buttonStates[buttonIds[i-1]]) || i==7 || displaySolution==true){
                 back.textContent = infos[i - 1]; 
                 back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
                 if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){

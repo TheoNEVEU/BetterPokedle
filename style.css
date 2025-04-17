@@ -53,7 +53,7 @@ html, body {
   aspect-ratio: 1.5 / 1;
   font-size: 2.5vh;
   opacity: 1;
-  transition: opacity 0.5s ease-out, display 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
   transform: translateX(min(0%, calc(35vw - 100vh * 0.729564)));
   z-index: 10;
 }
@@ -108,6 +108,8 @@ html, body {
 .menu-column button,
 .menu-button,
 .game-column input,
+.diff-button,
+.game-button,
 fieldset,
 button {
   user-select: auto;
