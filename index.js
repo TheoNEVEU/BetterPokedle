@@ -159,14 +159,14 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             back.style.backgroundColor = (infos[i - 1] == targetinfos[i - 1]) ? "green" : '#C60C30';
             if((i==5 || i==6) && infos[i - 1] != targetinfos[i - 1]){
                 const arrow = document.createElement("img");
-                arrow.src = "arrow.png";
+                arrow.src = "img/arrow.png";
                 arrow.classList.add("arrow");
                 arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
                 back.appendChild(arrow);
             }
         }
 
-        front.style.backgroundImage = "url('carte.png')";
+        front.style.backgroundImage = "url('img/carte.png')";
         front.style.backgroundSize = "cover";
 
         squareInner.appendChild(front);
