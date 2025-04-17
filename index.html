@@ -28,18 +28,24 @@
                 <fieldset>
                     <button id="solution">Afficher solution</button>
                     <button id="restart">Nouvelle partie</button>
-
                 </fieldset>
             </div>
+
             <div id="menu-settings" class="menus">
                 <h1>- Better Pokédle -</h1>
                 <h3>Réglages</h3>
-                <fieldset>
-                    <button id="Normal">Normal</button>
-                    <button id="Difficile">Difficile</button>
-
+                <fieldset id="difficulty-options">
+                    <legend>Options d'affichage</legend>
+                    <label><input type="checkbox" id="show-type1" checked> Type 1</label><br>
+                    <label><input type="checkbox" id="show-type2" checked> Type 2</label><br>
+                    <label><input type="checkbox" id="show-evolution" checked> Évolution</label><br>
+                    <label><input type="checkbox" id="show-couleur" checked> Couleur</label><br>
+                    <label><input type="checkbox" id="show-taille" checked> Taille</label><br>
+                    <label><input type="checkbox" id="show-poids" checked> Poids</label><br>
+                    <label><input type="checkbox" id="show-generation" checked> Génération</label>
                 </fieldset>
             </div>
+
             <div id="menu-team" class="menus">
                 <h1>- Better Pokédle -</h1>
                 <h3>Notre équipe</h3>
@@ -78,13 +84,12 @@
                     <div class="first-square">Génération</div>
                 </div>
             </div>
-            <div id="trylist">
-            </div>
+            <div id="trylist"></div>
         </div>
     </div>
+    
     <script type="module" src="index.js"></script>
     <script type="module" src="./confetti.js"></script>
 </body>
-
 
 </html>

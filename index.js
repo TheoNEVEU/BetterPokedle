@@ -1,11 +1,9 @@
-import { hard, lancerConfettis, eazy } from './confetti.js';
-
+import { lancerConfettis } from './confetti.js';
 var pokemonsListFile = "https://theoneveu.github.io/BetterPokedle/pokemonList.json";
 var request = new XMLHttpRequest();
 request.open("GET", pokemonsListFile);
 request.responseType = "json";
 request.send();
-let modeJeu = "normal";
 var pokemonsList;
 var pokemonTarget;
 var isSearchBarLocked = false;
@@ -18,24 +16,13 @@ request.onload = function () {
 
 function initialiserJeu() {
     pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
+    ajouterListenersCheckbox();
 
     document.getElementById("game-button").classList.add("active");
     document.getElementById("menu-game").classList.remove("inactive");
     document.getElementById("menu-settings").classList.add("inactive");
     document.getElementById("menu-team").classList.add("inactive");
 
-    document.getElementById("Normal").onclick = () => {
-        modeJeu = "normal";
-        console.log("Mode Normal activé");
-        eazy();
-    };
-    
-    document.getElementById("Difficile").onclick = () => {
-        modeJeu = "difficile";
-        console.log("Mode Difficile activé");
-        hard();
-    };
-    
     document.getElementById("SearchBar").addEventListener('keyup', function(e) {
         let nameSearch = this.value.toLowerCase();
         ajouterResultat(nameSearch);
@@ -75,7 +62,7 @@ function initialiserJeu() {
         document.getElementById("game-button").classList.add("active");
         document.getElementById("settings-button").classList.remove("active");
         document.getElementById("team-button").classList.remove("active");
-        
+
         document.getElementById("menu-game").classList.remove("inactive");
         document.getElementById("menu-settings").classList.add("inactive");
         document.getElementById("menu-team").classList.add("inactive");
@@ -112,6 +99,9 @@ function initialiserJeu() {
         setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
         setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
     }
+
+    // Ajout des gestionnaires de checkboxes
+    initialiserCheckboxes();
 }
 
 function ajouterLigne(pokemonTarget, pokemonGuess) {
@@ -131,10 +121,10 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
     const infos = [
         pokemon.types[0],
         pokemon.types[1] || "Aucun",
-        modeJeu === "difficile" ? "?" : pokemon.evolution,
+        pokemon.evolution,
         pokemon.couleur,
-        modeJeu === "difficile" ? "?" : pokemon.taille,
-        modeJeu === "difficile" ? "?" : pokemon.poids,
+        pokemon.taille,
+        pokemon.poids,
         pokemon.generation
     ];
     
@@ -142,13 +132,12 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
     const targetinfos = [
         pokemonsList[pokemonTarget].types[0],
         pokemonsList[pokemonTarget].types[1] || "Aucun",
-        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].evolution,
+        pokemonsList[pokemonTarget].evolution,
         pokemonsList[pokemonTarget].couleur,
-        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].taille,
-        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].poids,
+        pokemonsList[pokemonTarget].taille,
+        pokemonsList[pokemonTarget].poids,
         pokemonsList[pokemonTarget].generation
     ];
-    
 
     for (let i = 0; i < 8; i++) {
         const square = document.createElement("div");
@@ -163,25 +152,32 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
         back.classList.add("square-back");
 
         if (i == 0) {
-            // Image du Pokémon
             const imgTry = document.createElement("img");
             imgTry.id = "pokemonSprite";
             imgTry.src = 'https://img.pokemondb.net/sprites/scarlet-violet/icon/avif/' + pokemon.nomAnglais + '.avif';
             imgTry.alt = pokemon.nom;
             back.appendChild(imgTry);
         } else {
-            back.textContent = infos[i - 1]; 
-        
-            if (infos[i - 1] === "?") {
-                // Fond bleu pour les cartes masquées en mode difficile
-                back.style.backgroundColor = "#0074cc";
-            } else {
-                // Fond vert ou rouge en mode normal
-                back.style.backgroundColor = (infos[i - 1] === targetinfos[i - 1]) ? "green" : "#C60C30";
-            }
-        
-            // Ajout des flèches pour taille/poids
-            if ((i == 5 || i == 6) && infos[i - 1] != targetinfos[i - 1] && infos[i - 1] !== "?") {
+            const infoKey = ["type1", "type2", "evolution", "couleur", "taille", "poids", "generation"][i - 1];
+if (!isInfoVisible(infoKey)) {
+    back.textContent = "?";
+    back.style.backgroundColor = "#0095ff"; // Bleu si masqué
+} else {
+    back.textContent = infos[i - 1]; 
+    back.style.backgroundColor = (infos[i - 1] === targetinfos[i - 1]) ? "green" : "#C60C30";
+
+    // Flèche si taille ou poids incorrects
+    if ((infoKey === "taille" || infoKey === "poids") && infos[i - 1] != targetinfos[i - 1]) {
+        const arrow = document.createElement("img");
+        arrow.src = "arrow.png";
+        arrow.classList.add("arrow");
+        arrow.style.rotate = (infos[i - 1] < targetinfos[i - 1]) ? "180deg" : "0deg";
+        back.appendChild(arrow);
+    }
+}
+
+
+            if ((i == 5 || i == 6) && infos[i - 1] != targetinfos[i - 1]) {
                 const arrow = document.createElement("img");
                 arrow.src = "arrow.png";
                 arrow.classList.add("arrow");
@@ -189,7 +185,6 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
                 back.appendChild(arrow);
             }
         }
-        
 
         front.style.backgroundImage = "url('img/carte.png')";
         front.style.backgroundSize = "cover";
@@ -226,7 +221,6 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
 
 function ajouterResultat(pokemonNameSearch) {
     const resultList = document.getElementById("SearchResults");
-    
     while(resultList.firstChild){
         resultList.removeChild(resultList.firstChild);
     }
@@ -248,7 +242,7 @@ function ajouterResultat(pokemonNameSearch) {
                 }
             }
 
-            newResult.textContent = ""+element.id+". "+element.nom;
+            newResult.textContent = "" + element.id + ". " + element.nom;
             resultList.appendChild(newResult); 
         }
     });
@@ -270,4 +264,76 @@ function expandDiv(element) {
         element.classList.remove('shrink');
         element.classList.add('expand');
     }, 50);
+}
+
+function initialiserCheckboxes() {
+    const checkboxes = document.querySelectorAll('#menu-settings input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => filtrerPokemon());
+    });
+}
+
+function isInfoVisible(infoType) {
+    return document.getElementById(`show-${infoType}`).checked;
+}
+
+function ajouterListenersCheckbox() {
+    const champs = ["type1", "type2", "evolution", "couleur", "taille", "poids", "generation"];
+    champs.forEach(type => {
+        document.getElementById(`show-${type}`).addEventListener("change", () => {
+            rafraichirDerniereLigne();
+        });
+    });
+}
+
+function rafraichirDerniereLigne() {
+    const trylist = document.getElementById("trylist");
+    const lastTry = trylist.firstChild;
+    if (!lastTry) return;
+
+    const idAttr = lastTry.dataset.pokemonGuess;
+    const guess = parseInt(idAttr);
+    if (isNaN(guess)) return;
+
+    trylist.removeChild(lastTry);
+    ajouterLigne(pokemonTarget, guess);
+}
+
+
+function filtrerPokemon() {
+    const resultList = document.getElementById("SearchResults");
+    const nomCherche = document.getElementById("SearchBar").value.toLowerCase();
+
+    while (resultList.firstChild) resultList.removeChild(resultList.firstChild);
+
+    const filtres = {
+        types: Array.from(document.querySelectorAll('.typeCheck:checked')).map(cb => cb.value),
+        couleurs: Array.from(document.querySelectorAll('.colorCheck:checked')).map(cb => cb.value),
+        generations: Array.from(document.querySelectorAll('.genCheck:checked')).map(cb => parseInt(cb.value))
+    };
+
+    pokemonsList.forEach(pokemon => {
+        const matchNom = pokemon.nom.toLowerCase().includes(nomCherche);
+        const matchType = filtres.types.length === 0 || filtres.types.some(t => pokemon.types.includes(t));
+        const matchCouleur = filtres.couleurs.length === 0 || filtres.couleurs.includes(pokemon.couleur);
+        const matchGen = filtres.generations.length === 0 || filtres.generations.includes(pokemon.generation);
+
+        if (matchNom && matchType && matchCouleur && matchGen) {
+            const bouton = document.createElement("button");
+            bouton.classList.add("result");
+            bouton.textContent = `${pokemon.id}. ${pokemon.nom}`;
+            if (!pokemon.checked) {
+                bouton.onclick = () => {
+                    ajouterLigne(pokemonTarget, pokemon.id - 1);
+                    console.log("Guessed " + pokemon.nom);
+                };
+            } else {
+                bouton.style.color = 'grey';
+                bouton.onclick = () => {
+                    document.getElementById("SearchBar").focus();
+                };
+            }
+            resultList.appendChild(bouton);
+        }
+    });
 }
