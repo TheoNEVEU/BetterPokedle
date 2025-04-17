@@ -1,11 +1,11 @@
-import { lancerConfettis } from './confetti.js';
+import { hard, lancerConfettis } from './confetti.js';
 
 var pokemonsListFile = "https://theoneveu.github.io/BetterPokedle/pokemonList.json";
 var request = new XMLHttpRequest();
 request.open("GET", pokemonsListFile);
 request.responseType = "json";
 request.send();
-
+let modeJeu = "normal";
 var pokemonsList;
 var pokemonTarget;
 var isSearchBarLocked = false;
@@ -23,6 +23,18 @@ function initialiserJeu() {
     document.getElementById("menu-game").classList.remove("inactive");
     document.getElementById("menu-settings").classList.add("inactive");
     document.getElementById("menu-team").classList.add("inactive");
+
+    document.getElementById("Normal").onclick = () => {
+        modeJeu = "normal";
+        console.log("Mode Normal activé");
+        eazy();
+    };
+    
+    document.getElementById("Difficile").onclick = () => {
+        modeJeu = "difficile";
+        console.log("Mode Difficile activé");
+        hard();
+    };
     
     document.getElementById("SearchBar").addEventListener('keyup', function(e) {
         let nameSearch = this.value.toLowerCase();
@@ -117,24 +129,26 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
     const pokemon = pokemonsList[pokemonGuess];
 
     const infos = [
-        pokemon.types[0], 
-        pokemon.types[1] || "Aucun", 
-        pokemon.evolution, 
-        pokemon.couleur, 
-        pokemon.taille, 
-        pokemon.poids, 
-        pokemon.generation, 
+        pokemon.types[0],
+        pokemon.types[1] || "Aucun",
+        modeJeu === "difficile" ? "?" : pokemon.evolution,
+        pokemon.couleur,
+        modeJeu === "difficile" ? "?" : pokemon.taille,
+        modeJeu === "difficile" ? "?" : pokemon.poids,
+        pokemon.generation
     ];
+    
 
     const targetinfos = [
-        pokemonsList[pokemonTarget].types[0], 
-        pokemonsList[pokemonTarget].types[1] || "Aucun", 
-        pokemonsList[pokemonTarget].evolution, 
-        pokemonsList[pokemonTarget].couleur, 
-        pokemonsList[pokemonTarget].taille, 
-        pokemonsList[pokemonTarget].poids, 
-        pokemonsList[pokemonTarget].generation, 
+        pokemonsList[pokemonTarget].types[0],
+        pokemonsList[pokemonTarget].types[1] || "Aucun",
+        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].evolution,
+        pokemonsList[pokemonTarget].couleur,
+        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].taille,
+        modeJeu === "difficile" ? "?" : pokemonsList[pokemonTarget].poids,
+        pokemonsList[pokemonTarget].generation
     ];
+    
 
     for (let i = 0; i < 8; i++) {
         const square = document.createElement("div");
@@ -166,7 +180,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
             }
         }
 
-        front.style.backgroundImage = "url('carte.png')";
+        front.style.backgroundImage = "url('img/carte.png')";
         front.style.backgroundSize = "cover";
 
         squareInner.appendChild(front);
