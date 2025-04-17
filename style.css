@@ -27,6 +27,16 @@ body {
   grid-row-gap: 0px;
 }
 
+/* .menu-column *, #background, .game-column * {
+  user-select: none;
+  pointer-events: none;
+} */
+
+.menu-column button, .menu-button, .game-column input, fieldset, button {
+  user-select: auto;
+  pointer-events: auto;
+}
+
 .menu-column {
   grid-area: 1 / 1 / 6 / 2;
   height: 100%;
@@ -41,7 +51,7 @@ body {
   height: 100%;
 }
 
-#menu-content{
+.menus {
   display: flex;
   position: absolute;
   flex-wrap: wrap;
@@ -54,19 +64,36 @@ body {
   height: 32vh;
   aspect-ratio: 1.5 / 1;
   font-size: 2.5vh;
+  opacity: 1;
+  transition: opacity 0.5s ease-out, display 0.5s ease-out;
 }
 
-#menu-content > h1 {
+.menus.inactive  {
+  opacity: 0;
+  display: none;
+}
+
+.menus h1 {
   justify-content: center;
   text-align: center;
   width: 100%;
   padding: 0%;
-  margin-bottom: 0%;
-  padding-bottom: 0px;
+  margin: 0%;
   font-size: 7vh;
 }
 
-#menu-content > fieldset {
+.menus h3 {
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 0%;
+  margin: 0%;
+  font-size: 5vh;
+  top: 20%;
+}
+
+.menus fieldset {
   margin: 0%;
   padding: 0px;
   padding-bottom: 5%;
@@ -78,7 +105,7 @@ body {
   border: none;
 }
 
-#menu-content > fieldset > button {
+.menus button {
   width: 80%;
   height: 40%;
   border: 3px solid yellow;
@@ -89,6 +116,127 @@ body {
   font-family: "Micro 5", sans-serif;
   font-style: normal;
   font-size: 4vh;
+}
+
+.menu-button {
+  display: flex;
+  position: absolute;
+
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+
+  border: 0.5vh solid #000850;
+  border-radius: 50%;
+
+  top: 71%;
+  z-index: 10;
+  transform: translateX(min(0%, calc(35vw - 100vh * 0.729564)));
+
+  height: 7vh;
+  aspect-ratio: 1 / 1;
+
+  cursor: pointer;
+  transition: background-color 0.75s ease-in-out, filter 0.75s ease-in-out, box-shadow 0.75s ease-in, height 0.75s ease-in;
+}
+
+.menu-button.active {
+  box-shadow: 1px 1px #6F215D;
+  height: 7.5vh;
+}
+
+.menu-button:not(.active) {
+  background-color: grey;
+  box-shadow: 4px 4px #6F215D;
+}
+
+.menu-button img {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  height: 75%;
+  filter: drop-shadow(1.3px 0 #000850)
+          drop-shadow(-1.3px 0 #000850)
+          drop-shadow(0 1.3px #000850)
+          drop-shadow(0 -1.3px #000850)
+          grayscale(0);
+  transition: filter 0.75s ease-in-out;
+}
+
+.menu-button.active img {
+  animation: rotateImage 0.75s ease-in-out;
+}
+
+.menu-button:not(.active) img {
+  filter: drop-shadow(1.3px 0 #000850)
+          drop-shadow(-1.3px 0 #000850)
+          drop-shadow(0 1.3px #000850)
+          drop-shadow(0 -1.3px #000850)
+          grayscale(1);
+}
+
+#game-button {
+  left: 6.4vh;
+}
+
+#game-button.active {
+  background-color: green;
+}
+
+#settings-button {
+  left: 17.2vh;
+}
+
+#settings-button.active {
+  background-color: #00AAF7;
+}
+
+#team-button {
+  left: 28vh;
+}
+
+#team-button.active {
+  background-color: orangered;
+}
+
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    filter: drop-shadow(1.3px 0 white)
+          drop-shadow(-1.3px 0 white)
+          drop-shadow(0 1.3px white)
+          drop-shadow(0 -1.3px white);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#team-desc {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 20%;
+  height: auto;
+  font-size: 6vh;
+}
+
+.photos img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 5%;
 }
 
 #menu-score{

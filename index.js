@@ -18,6 +18,11 @@ request.onload = function () {
 
 function initialiserJeu() {
     pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
+
+    document.getElementById("game-button").classList.add("active");
+    document.getElementById("menu-game").classList.remove("inactive");
+    document.getElementById("menu-settings").classList.add("inactive");
+    document.getElementById("menu-team").classList.add("inactive");
     
     document.getElementById("SearchBar").addEventListener('keyup', function(e) {
         let nameSearch = this.value.toLowerCase();
@@ -52,6 +57,48 @@ function initialiserJeu() {
         pokemonsList.forEach(element => element.checked = false);
         isSearchBarLocked = false;
         displaySolution = false;
+    }
+
+    document.getElementById("game-button").onclick = () => {
+        document.getElementById("game-button").classList.add("active");
+        document.getElementById("settings-button").classList.remove("active");
+        document.getElementById("team-button").classList.remove("active");
+        
+        document.getElementById("menu-game").classList.remove("inactive");
+        document.getElementById("menu-settings").classList.add("inactive");
+        document.getElementById("menu-team").classList.add("inactive");
+
+        document.getElementById("menu-game").style.display = 'flex';
+        setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
+        setTimeout(() => {document.getElementById("menu-team").style.display = 'none';}, 500);
+    }
+
+    document.getElementById("settings-button").onclick = () => {
+        document.getElementById("game-button").classList.remove("active");
+        document.getElementById("settings-button").classList.add("active");
+        document.getElementById("team-button").classList.remove("active");
+
+        document.getElementById("menu-game").classList.add("inactive");
+        document.getElementById("menu-settings").classList.remove("inactive");
+        document.getElementById("menu-team").classList.add("inactive");
+
+        document.getElementById("menu-settings").style.display = 'flex';
+        setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
+        setTimeout(() => {document.getElementById("menu-team").style.display = 'none';}, 500);
+    }
+
+    document.getElementById("team-button").onclick = () => {
+        document.getElementById("game-button").classList.remove("active");
+        document.getElementById("settings-button").classList.remove("active");
+        document.getElementById("team-button").classList.add("active");
+
+        document.getElementById("menu-game").classList.add("inactive");
+        document.getElementById("menu-settings").classList.add("inactive");
+        document.getElementById("menu-team").classList.remove("inactive");
+
+        document.getElementById("menu-team").style.display = 'flex';
+        setTimeout(() => {document.getElementById("menu-game").style.display = 'none';}, 500);
+        setTimeout(() => {document.getElementById("menu-settings").style.display = 'none';}, 500);
     }
 }
 

@@ -17,23 +17,45 @@
 </head>
 
 <body>
-    <img src="background.png" id="background">
+    <img src="img/background.png" id="background">
     <div class="grid-container">
 
         <!-- DIV Menu (Partie Gauche de l'écran) -->
         <div class="menu-column">
-            <div id="menu-content">
-            <h1>Better Pokédle</h1><br>
-            <fieldset>
-                <button id="solution">Afficher solution</button>
-                <button id="restart">Nouvelle partie</button>
+            <div id="menu-game" class="menus">
+                <h1>- Better Pokédle -</h1>
+                <h3>Jeu</h3>
+                <fieldset>
+                    <button id="solution">Afficher solution</button>
+                    <button id="restart">Nouvelle partie</button>
 
-            </fieldset>
+                </fieldset>
             </div>
-            <div id="menu-score">🏆
-                <div id="score">000</div>
+            <div id="menu-settings" class="menus">
+                <h1>- Better Pokédle -</h1>
+                <h3>Réglages</h3>
+                <fieldset>
+                    <button id="solution">Réglage 1</button>
+                    <button id="restart">Réglage 2</button>
+
+                </fieldset>
             </div>
-            <img src="pokedex.jpg">
+            <div id="menu-team" class="menus">
+                <h1>- Better Pokédle -</h1>
+                <h3>Notre équipe</h3>
+                <div id="team-desc">
+                    <div class="photos"><img src="img/Theo.png">Théo</div>
+                    <div class="photos"><img src="img/Vico.png">Victor</div>
+                    <div class="photos"><img src="img/Anas.png">Anas</div>
+                </div>
+            </div>
+
+            <div id="game-button" class="menu-button"><img src="img/loupe.png"></div>
+            <div id="settings-button" class="menu-button"><img src="img/settings.png"></div>
+            <div id="team-button" class="menu-button"><img src="img/logo-rokcet.png"></div>
+
+            <div id="menu-score">🏆<div id="score">000</div></div>
+            <img src="img/pokedex.png">
         </div>
 
         <!-- DIV Jeu (Partie Droite de l'écran) -->
