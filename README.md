@@ -32,7 +32,7 @@ Nous avons ajouté plusieurs fonctionnalités pour enrichir l'expérience de jeu
 - Système d’indices pour aider à deviner
 - Mode difficile avec indices masqués
 - Calcul des points en fonction de la performance
-- Partie relançable sans recharger la page <br/>
+- Partie à l'infinie sans recharger la page <br/>
 
 
 ## Les instructions d’installation et d’exécution
@@ -60,4 +60,32 @@ Si tout à bien fonctionné, vous devriez avoir une fenêtre comme celle-ci :
    │                                           │
    └───────────────────────────────────────────┘
  ```
-Vous n'avez plus qu'a Ctrl+click sur un des liens et vous amuser !
+Vous n'avez plus qu'a Ctrl+click sur un des liens et vous amuser !<br/>
+
+## Comment jouer 
+### Le menu
+Le menu se trouve sur la gauche, rerésenté pas un pokedex, on y trouve trois bouton et un compteur de point :<br/>
+- <img src="/img/loupe.png" width="25px" height="25px"> Le menu **Jeu** :
+      Il permet de lancer une nouvelle partie ou d'afficher la solution en cas de difficulté (aucun point n'est donné dans ce cas)<br/>
+- <img src="/img/settings.png" width="25px" height="25px"> Le menu **Paramètres** :
+      Il permet de gérer les paramètres de la partie concernant la difficulté, on peut y désactiver chaque info du pokémon indépendamment<br/>
+      Lorsqu'une information est masquée, elle apparaît grisée dans les parmètres et affiche une carte noir contenant *???*<br/>
+- <img src="/img/logo-rokcet.png" width="25px" height="25px"> Le menu **Notre équipe** :
+      Il présente de manière *très* sérieuse l'équipe de développement de ce jeu.
+
+### Le Jeu
+Le jeu se trouve sur la partie droite de l'écran, il contient une barre de recherche, permettant de rechercher le bon pokemon parmis les 151 disponibles.  
+Lorsque la barre de recherche est sélectionnée, une fenêtre s'ouvre pour afficher les pokemons correspondant à la recherche.  
+Pour lancer une tentative, il suffit de clicker sur le nom d'un pokemon de la liste de résultats.<br/><br/><br/>
+
+<img src="/img/README_Exemple1.png" width="100%" height="auto">
+Voici à quoi ressemble une tentative lors d'une partie, voyons la signification de chaque élément :<br/>
+
+- Une case **rouge** indique que l'information de cette carte **ne correspond pas au pokemon recherché**
+- Une case **verte** indique que l'information de cette carte **correspond au pokemon recherché**
+- Une case **noire** indique une information **masquée**
+- Une case contenant une **flèche** indique que l'information de cette carte est :
+    - **inférieure au pokemon recherché** pour une **flèche vers le haut**
+    - **supérieur au pokemon recherché** pour une **flèche vers le bas**
+
+Si toutes les cartes sont vertes, vous avez gagné ! Vous incrémentez donc votre compteur de victoires de un.
