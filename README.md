@@ -38,7 +38,7 @@ Nous avons ajouté plusieurs fonctionnalités pour enrichir l'expérience de jeu
 ## Les instructions d’installation et d’exécution
 Voici la démarche la plus simple pour lancer notre projet :
 
-- Cloner le dépôt `https://github.com/TheoNEVEU/BetterPokedle.git`
+- Cloner le dépôt `https://github.com/TheoNEVEU/BetterPokedle`
 - Ouvrir le fichier `index.js` dans VisualStudio Code
 - Installer `npm` et `npx` :
     - ```
