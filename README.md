@@ -10,8 +10,8 @@ Le but est de retrouver le nom du Pokémon ( de la première génération seulem
 
 - <img src="/img/Logo_type1.png" width="25px" height="25px"> Le 1er type 
 - <img src="/img/Logo_type2.png" width="25px" height="25px"> Le 2ème type
-- <img src="/img/Logo_color.png" width="25px" height="25px"> Sa couleur
 - <img src="/img/Logo_evo.png" width="25px" height="25px"> Son stade d'évolution 
+- <img src="/img/Logo_color.png" width="25px" height="25px"> Sa couleur
 - <img src="/img/Logo_taille.png" width="25px" height="25px"> Sa taille
 - <img src="/img/Logo_poids.png" width="25px" height="25px"> Son poids
 
