@@ -4,7 +4,8 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +27,8 @@
                 <h1>- Better Pokédle -</h1>
                 <h3>Jeu</h3>
                 <fieldset>
-                    <button id="solution">Afficher solution</button>
-                    <button id="restart">Nouvelle partie</button>
+                    <button class="game-button" id="solution">Afficher solution</button>
+                    <button class="game-button" id="restart">Nouvelle partie</button>
 
                 </fieldset>
             </div>
@@ -43,7 +44,7 @@
                         <div class="diff-button" id="but-taille"><img src="img/Logo_taille.png"></div>
                         <div class="diff-button" id="but-poids"><img src="img/Logo_poids.png"></div>
                     </div>
-                    <button id="restart">Réglage 2</button>
+                    <button id="apply-diff">Appliquer</button>
                 </fieldset>
             </div>
             <div id="menu-team" class="menus">
@@ -60,7 +61,8 @@
             <div id="settings-button" class="menu-button"><img src="img/settings.png"></div>
             <div id="team-button" class="menu-button"><img src="img/logo-rokcet.png"></div>
 
-            <div id="menu-score">🏆<div id="score">000</div></div>
+            <div id="menu-score">🏆<div id="score">000</div>
+            </div>
             <img src="img/pokedex.png">
         </div>
 
@@ -69,7 +71,7 @@
             <fieldset>
                 <input type="text" placeholder="  Chercher un pokémon" id="SearchBar" autocomplete="off">
             </fieldset>
-            
+
             <div id="SearchResults"></div>
 
             <div id="trylisttitles">
@@ -88,6 +90,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@simondmc/popup-js@1.4.3/popup.min.js"></script>
     <script type="module" src="index.js"></script>
     <script type="module" src="./confetti.js"></script>
 </body>
