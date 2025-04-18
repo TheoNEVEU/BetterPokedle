@@ -131,6 +131,7 @@ const popup = new Popup({
 });
 
 
+
 // Liste des IDs de boutons
 const buttonIds = [
     "but-type1",
@@ -140,6 +141,7 @@ const buttonIds = [
     "but-taille",
     "but-poids"
 ];
+
 
 var buttonStates = {
     "but-type1": true,
@@ -213,6 +215,16 @@ function initialiserJeu() {
     }
 
     document.getElementById("apply-diff").onclick = () => {
+        const trylist = document.getElementById("trylist");
+        while (trylist.firstChild) {
+            trylist.removeChild(trylist.firstChild);
+        }
+        buttonStates = { ...nextButtonStates };
+        console.log("Start New Game with new parameters");
+        pokemonTarget = Math.floor(Math.random() * pokemonsList.length);
+        pokemonsList.forEach(element => element.checked = false);
+        isSearchBarLocked = false;
+        displaySolution = false;
         popup.show();
     }
 
@@ -322,7 +334,7 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
                 }
             }
             else {
-                back.textContent = "???";
+                back.textContent = "???"; 
                 back.style.backgroundColor = 'black';
                 back.style.color = 'white';
             }
@@ -335,7 +347,6 @@ function ajouterLigne(pokemonTarget, pokemonGuess) {
         squareInner.appendChild(back);
         square.appendChild(squareInner);
         newRow.appendChild(square);
-
         setTimeout(() => { squareInner.style.transform = "rotateY(180deg)"; }, 50 + i * 300);
     }
 
